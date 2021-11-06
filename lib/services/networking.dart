@@ -8,7 +8,8 @@ class NetworkingHelper {
   NetworkingHelper(this.url);
 
   Future<dynamic> getData() async {
-    Response response = await get(url);
+    Uri uri = Uri.parse(url);
+    Response response = await get(uri);
 
     if (response.statusCode == 200) {
       return jsonDecode(response.body);

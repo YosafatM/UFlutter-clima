@@ -13,8 +13,8 @@ class LocationScreen extends StatefulWidget {
 }
 
 class _LocationScreenState extends State<LocationScreen> {
-  int number, temp;
-  String city;
+  late int number, temp;
+  late String city;
 
   dynamic data;
 
@@ -85,13 +85,11 @@ class _LocationScreenState extends State<LocationScreen> {
                         ),
                       );
 
-                      if (city != null) {
-                        data = await WeatherModel.getDataFromCity(city);
+                      data = await WeatherModel.getDataFromCity(city);
 
-                        setState(() {
-                          updateUI();
-                        });
-                      }
+                      setState(() {
+                        updateUI();
+                      });
                     },
                     child: Icon(
                       Icons.location_city,
