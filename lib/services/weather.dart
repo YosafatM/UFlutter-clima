@@ -1,4 +1,4 @@
-import 'location.dart';
+import '../data/services/location.dart';
 import 'networking.dart';
 
 const String key = 'b885021cf72b471000e43ad9a2db74ea';

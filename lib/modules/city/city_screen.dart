@@ -1,15 +1,11 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+import 'package:clima/modules/weather_controller.dart';
 import 'package:clima/utilities/constants.dart';
 
-class CityScreen extends StatefulWidget {
-  @override
-  _CityScreenState createState() => _CityScreenState();
-}
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class _CityScreenState extends State<CityScreen> {
-  String city = '';
-
+class CityScreen extends GetView<WeatherController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,9 +26,13 @@ class _CityScreenState extends State<CityScreen> {
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  child: Icon(
-                    Icons.arrow_back_ios,
-                    size: 50.0,
+                  child: Stack(
+                    children: [
+                      Icon(
+                        Icons.arrow_back_ios,
+                        size: 50.0,
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -59,14 +59,12 @@ class _CityScreenState extends State<CityScreen> {
                     ),
                   ),
                   onChanged: (text) {
-                    city = text;
+                    controller.query = text;
                   },
                 ),
               ),
               TextButton(
-                onPressed: () {
-                  Navigator.pop(context, city);
-                },
+                onPressed: () => controller.retrieveData(fromQuery: true),
                 child: Text(
                   'Get Weather',
                   style: kButtonTextStyle,
